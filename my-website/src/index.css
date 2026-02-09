@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background: white;
+  font-family: system-ui, sans-serif;
+}
+
+nav .bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  background-color:#426B1F
+
+}
+nav .bar .logo {
+  font-size: 32px;
+  font-weight: 500;
+  color: white;
+}
+nav .bar .links {
+  display: flex;
+  list-style: none;
+  gap: 48px;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+
+  font-size: 20px;
+  cursor: pointer;
+}
+nav .session-container {
+  position: relative;
+
+  margin: 6px 6px 6px auto;
+  width:fit-content;
+
+  font-size: 20px;
+  color: white;
+  background-color: white;
+}
+nav .session {
+  display: flex;
+  position: relative;
+
+  padding: 6px 6px;
+  margin: 6px 0px 6px 0px;
+  width:fit-content;
+
+  font-size: 20px;
+  color: white;
+  background-color:#426B1F;
+}
+nav .session text {
+  padding: 3px 12px;
+}
+nav .session li {
+  color: black;
+  background-color: white;
+  padding: 3px 12px;
+  list-style: none;
+
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login {
+  position: absolute;
+  visibility: hidden;
+
+  padding: 6px 6px;
+  margin: 0px 0px 6px 0px;
+  width: 100%;
+
+  font-size: 20px;
+  color: white;
+  background-color:#426B1F;
+  cursor: pointer;
+}
+
+
+/*  Customer Page
+    The customer page is a flexbox. It contains 3 objects within it:
+    |=======================|
+    |     NavigationBar     |
+    |=======================|
+    |    Query    |   [edit]|
+    |    Table    |    [del]|
+    |=============|         |
+    |             |  Client |
+    |   Rental    |  Info   |
+    |   History   |         |
+    |=============|=========|
+
+*/
+.customer-page {
+  /* Flex Table properties */
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+
+  flex: 1;
+  margin: 0px 6px 6px 6px;
+}
+.customer-page-left {
+  /* Flex Table properties */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  
+  flex: 6;
+}
+.customer-page-right {
+  flex: 4;
+}
+
+.customer-table {
+  border: 1px solid #dddddd;
+  min-height: 40px;
+  max-height: calc(40px * 4 + 3px);
+  overflow: auto;
+}
+.rental-history {
+  border: 1px solid #dddddd;
+  flex: 1;
+}
+
+table {
+  border-collapse: collapse;
+  height: 100%;
+  width: 100%;
+}
+table td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+table th {
+  background-color: white;
+  position: sticky;
+  top: 0;
+}
+table tr {
+  height: 40px;
+}
+table tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.customer-info {
+  border: 2px solid #dddddd;
+  padding: 8px;
+}
+
