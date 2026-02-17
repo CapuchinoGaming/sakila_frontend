@@ -38,7 +38,7 @@ const records = [
     |=============|=========|
 */
 function CustomerPage() {
-    const [customerSelected, setCustomerSelected] = useState(false);
+    const [customerSelected, setCustomerSelected] = useState(true);
 
     return (
         <>
