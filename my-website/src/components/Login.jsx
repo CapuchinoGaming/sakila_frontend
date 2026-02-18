@@ -1,4 +1,4 @@
-/*  Login Pop-Up
+/*  Login Pop-Up (UNUSED)
     Positioned below the Navigation Bar.
     The login menu is contained inside the NavigationBar object.
     It contains a simple username/password form and a submit button.
