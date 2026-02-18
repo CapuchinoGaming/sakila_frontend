@@ -37,11 +37,12 @@ nav .bar .links {
 }
 .session-container {
   position: relative;
+  display: flex;
+  gap: 6px;
 
-  margin: 6px 6px 6px auto;
+  margin: 6px 6px 6px 6px;
   width:fit-content;
 
-  font-size: 20px;
   color: white;
   background-color: white;
 }
@@ -52,7 +53,6 @@ nav .bar .links {
   padding: 6px 6px;
   width:fit-content;
 
-  font-size: 20px;
   color: white;
   background-color:#426B1F;
 }
@@ -65,7 +65,6 @@ nav .bar .links {
   padding: 3px 12px;
   list-style: none;
 
-  font-size: 20px;
   cursor: pointer;
 }
 .login {
@@ -142,9 +141,8 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-
 td, th {
-  padding: 8px;
+  padding: 6px 8px;
   text-align: left;
 }
 tr {

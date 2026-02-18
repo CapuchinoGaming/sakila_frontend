@@ -7,8 +7,8 @@ function RentalHistory({ records, customerSelected }) {
         <div className="rental-history">
             <table>
                 <tr>
-                    <th>rental_id</th>
-                    <th>inventory_id</th>
+                    <th>rent_id</th>
+                    <th>inv_id</th>
                     <th>title</th>
                     <th>rental_date</th>
                     <th>return_date</th>
