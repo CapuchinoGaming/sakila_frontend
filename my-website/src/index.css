@@ -38,13 +38,10 @@ nav .bar .links {
 .line-container {
   position: relative;
   display: flex;
-  gap: 6px;
+  gap: 120px;
 
   margin: 6px 6px 6px 6px;
   width: fit-content;
-
-  color: white;
-  background-color: white;
 }
 .session {
   display: flex;
