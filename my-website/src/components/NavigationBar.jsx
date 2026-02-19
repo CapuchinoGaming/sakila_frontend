@@ -1,3 +1,5 @@
+import Session from "./Session";
+
 /*  Navigation Bar
     Positioned on top of all pages.
     It contains the "logo" and has links to the other pages. */
@@ -12,6 +14,8 @@ function NavigationBar() {
                     <li>Films</li>
                     <li>Customers</li>
                 </ul>
+
+                <Session/>
             </div>
         </nav>
     )

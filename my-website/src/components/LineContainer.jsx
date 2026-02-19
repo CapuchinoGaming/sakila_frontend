@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import Session from "./Session";
 import SearchBar from "./SearchBar";
 import PaginationControls from "./PaginationControls";
 
@@ -16,7 +15,6 @@ function LineContainer() {
                 page={currentPage}
                 setCurrentPage={setCurrentPage}
             />
-            <Session/>
         </div>
     )
 }

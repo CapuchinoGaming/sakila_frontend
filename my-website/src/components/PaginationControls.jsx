@@ -33,6 +33,7 @@ const styles = {
     container: {
         display: "flex",
         alignItems: "center",
+        padding: "6px",
         gap: "16px",
         fontSize: "14px",
         backgroundColor: "#dddddd",

@@ -1,7 +1,13 @@
 // Allow the use of states (React variables)
 import { useState } from "react";
 
+// LineContainer components
+import Session from "../components/Session";
+import SearchBar from "../components/SearchBar";
+import PaginationControls from "../components/PaginationControls";
+
 import LineContainer from "../components/LineContainer";
+
 import CustomerTable from "../components/CustomerTable";
 import RentalHistory from "../components/RentalHistory";
 import CustomerInfo from "../components/CustomerInfo";
@@ -90,9 +96,9 @@ function CustomerPage() {
 
     return (
         <>
-            <LineContainer/>
             <div className="customer-page">
                 <div className="customer-page-left">
+                    <LineContainer/>
                     <CustomerTable customers={customers} customerSelected={customerSelected}/>
                     <RentalHistory records={records} customerSelected={customerSelected}/>
                 </div>
