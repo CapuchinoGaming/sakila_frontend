@@ -3,12 +3,12 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import PaginationControls from "./PaginationControls";
 
-function LineContainerLeft() {
+function LineContainerLeft({ setCustomers }) {
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
         <div className="line-container">
-            <SearchBar/>
+            <SearchBar setCustomers={setCustomers}/>
             <PaginationControls
                 totalItems={45}
                 itemsPerPage={10}

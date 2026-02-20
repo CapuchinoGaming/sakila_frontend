@@ -1,13 +1,16 @@
 function CustomerTable({ customers, customerSelected }) {
-    const tableStyle = {
+    const divStyle = {
         height: customerSelected ? "calc(36px * 4 + 1px) " : "100%"
+    };
+    const tableStyle = {
+        height: customerSelected ? "auto" : "100%"
     };
     const rowStyle = {
         height: customerSelected ? "36px" : "auto"
     };
 
     return (
-        <div className="customer-table" style={tableStyle}>
+        <div className="customer-table" style={divStyle}>
             <table style={tableStyle}>
                 <tr style={rowStyle}>
                     <th>customer_id</th>
@@ -15,7 +18,7 @@ function CustomerTable({ customers, customerSelected }) {
                     <th>last_name</th>
                 </tr>
                 {customers.map(c => (
-                    <CustomerRow key={c.id} id={c.id} first_name={c.first_name} last_name={c.last_name} customerSelected={customerSelected}/>
+                    <CustomerRow key={c.customer_id} id={c.customer_id} first_name={c.first_name} last_name={c.last_name} customerSelected={customerSelected}/>
                 ))}
             </table>
         </div>

@@ -109,6 +109,10 @@ const records = [
     |=============|=========|
 */
 function CustomerPage() {
+    // States for API Queries
+    const [customers, setCustomers] = useState([]);
+
+
     const [customerSelected, setCustomerSelected] = useState(true);
     const [editCustomer, setEditCustomer] = useState(false);
 
@@ -116,7 +120,7 @@ function CustomerPage() {
         <>
             <div className="customer-page">
                 <div className="customer-page-left">
-                    <LineContainerLeft/>
+                    <LineContainerLeft setCustomers={setCustomers}/>
                     <CustomerTable customers={customers} customerSelected={customerSelected}/>
                     <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected}/>
                     <RentalHistory records={records} customerSelected={customerSelected}/>
