@@ -6,9 +6,11 @@ import Session from "../components/Session";
 import SearchBar from "../components/SearchBar";
 import PaginationControls from "../components/PaginationControls";
 
-import LineContainer from "../components/LineContainer";
+import LineContainerLeft from "../components/LineContainerLeft";
+import LineContainerRight from "../components/LineContainerRight";
 
 import CustomerTable from "../components/CustomerTable";
+import OutgoingHistory from "../components/OutgoingHistory";
 import RentalHistory from "../components/RentalHistory";
 import CustomerInfo from "../components/CustomerInfo";
 
@@ -53,6 +55,16 @@ const customers = [
     {id: 15, first_name: 'Patricia', last_name: 'Johnson'},
 ];
 
+const outgoingRecords = [
+    // Note: empty cells can be written as "null" or simply do not write it on the array
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03', return_date: null},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03'},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03', return_date: null},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03'},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03', return_date: null},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03'},
+];
+
 /*  API: records array
     RentalHistory will inmediately render anything placed on this array,
     one record per row.
@@ -76,6 +88,11 @@ const records = [
     {rental_id: 9043, inventory_id: 4127, title: 'TORQUE BOUND', rental_date: '2005-07-30 06:34:07', return_date: '2005-08-02 01:16:07'},
     {rental_id: 4748, inventory_id: 4279, title: 'VALENTINE VANISHING', rental_date: '2005-07-08 13:59:38', return_date: '2005-07-15 16:51:38'},
     {rental_id: 4796, inventory_id: 2484, title: 'MADNESS ATTACKS', rental_date: '2005-07-08 16:35:44', return_date: '2005-07-13 11:08:44'},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03', return_date: null},
+    {rental_id: 15813, inventory_id: 981, title: 'DEEP CRUSADE', rental_date: '2006-02-14 15:16:03'},
+    {rental_id: 9043, inventory_id: 4127, title: 'TORQUE BOUND', rental_date: '2005-07-30 06:34:07', return_date: '2005-08-02 01:16:07'},
+    {rental_id: 4748, inventory_id: 4279, title: 'VALENTINE VANISHING', rental_date: '2005-07-08 13:59:38', return_date: '2005-07-15 16:51:38'},
+    {rental_id: 4796, inventory_id: 2484, title: 'MADNESS ATTACKS', rental_date: '2005-07-08 16:35:44', return_date: '2005-07-13 11:08:44'},
 ];
 
 /*  Customer Page
@@ -93,16 +110,19 @@ const records = [
 */
 function CustomerPage() {
     const [customerSelected, setCustomerSelected] = useState(true);
+    const [editCustomer, setEditCustomer] = useState(false);
 
     return (
         <>
             <div className="customer-page">
                 <div className="customer-page-left">
-                    <LineContainer/>
+                    <LineContainerLeft/>
                     <CustomerTable customers={customers} customerSelected={customerSelected}/>
+                    <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected}/>
                     <RentalHistory records={records} customerSelected={customerSelected}/>
                 </div>
                 <div className="customer-page-right">
+                    <LineContainerRight/>
                     <CustomerInfo customerSelected={customerSelected}/>
                 </div>
             </div>

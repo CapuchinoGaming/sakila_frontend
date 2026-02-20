@@ -1,6 +1,6 @@
 function CustomerTable({ customers, customerSelected }) {
     const tableStyle = {
-        height: customerSelected ? "calc(37.5px * 4)" : "100%"
+        height: customerSelected ? "calc(36px * 4 + 1px) " : "100%"
     };
     const rowStyle = {
         height: customerSelected ? "36px" : "auto"

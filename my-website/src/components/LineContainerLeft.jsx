@@ -3,7 +3,7 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import PaginationControls from "./PaginationControls";
 
-function LineContainer() {
+function LineContainerLeft() {
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
@@ -19,4 +19,4 @@ function LineContainer() {
     )
 }
 
-export default LineContainer;
+export default LineContainerLeft;

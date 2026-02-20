@@ -38,6 +38,7 @@ nav .bar .links {
 .line-container {
   display: flex;
   width: 100%;
+  height: 34px;
 
   justify-content: space-between;
 }
@@ -107,10 +108,10 @@ nav .bar .links {
   
   flex: 7;
 }
-
 .customer-page-right {
   display: flex;
   flex-direction: column;
+  gap: 6px;
 
   flex: 3;
 }
@@ -119,12 +120,17 @@ nav .bar .links {
   border: 1px solid #bbbbbb;
   overflow: auto;
 }
+.outgoing-history {
+  border: 1px solid #bbbbbb;
+  overflow: auto;
+}
 .rental-history {
   border: 1px solid #bbbbbb;
+  overflow: auto;
   flex: 1;
 }
 .customer-info {
-  border: 2px solid #dddddd;
+  border: 1px solid #bbbbbb;
   padding: 8px;
 
   overflow: auto;
