@@ -1,60 +1,47 @@
 import { useState } from "react";
 
-function SearchBar({ setCustomers }) {
-    const [query, setQuery] = useState("");     // This is the query stored in a state
+function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
+    const [query, setQuery] = useState("");
+    const [searchField, setSearchField] = useState("first_name");
 
     // This event activates when the "search" button is pressed
     const fetchCustomers = async (e) => {
     e.preventDefault();
 
+    // If query is empty, retrieve all customers and expand CustomerTable
+    if (query === "")
+    {
+        setCustomerSelected(false);
+    }
+
     try {
-        let filters = [];
-
-        // If query[0] is letter, query by name. If query[0] is number, query by id.
-        if (/^[a-zA-Z]/.test(query)) {
-            filters = ["first_name", "last_name"];
-        } else if (/^[0-9]/.test(query)) {
-            filters = ["customer_id"];
-        }
-
-        let customers = [];
-
-        // Loop through filters
-        for (const filter of filters) {
-            const response = await fetch(
-                "http://localhost:8000/api/query/customer",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        filter_var: filter,
-                        filter_value: query,
-                        offset: 0,
-                        top_n: 20,
-                    }),
-                }
-            );
-
-            const data = await response.json();
-
-            customers = [
-                ...customers,
-                ...data.customers,
-            ];
-        }
-
-        // Remove duplicates
-        customers = customers.filter(
-            (customer, index, self) =>
-                index ===
-                self.findIndex(
-                    (c) => c.customer_id === customer.customer_id
-                )
+        const response = await fetch(
+            "http://localhost:8000/api/query/customer",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    filter_var: searchField,
+                    filter_value: query,
+                    offset: 0,
+                    top_n: 15,
+                }),
+            }
         );
 
-        setCustomers(customers);
+        // Query and store the response
+        const data = await response.json();
+        console.log("Full response:", data);
+
+        if (data && data.customers) {
+            setCustomers(data.customers);
+            setTotalItems(data.customers.length);
+        } else {
+            setCustomers([]);
+            setTotalItems(0);
+        }
 
     } catch (error) {
         console.error("Error:", error);
@@ -72,6 +59,15 @@ function SearchBar({ setCustomers }) {
                 placeholder="Search by name or id..."
                 style={{ flex: 1, padding: "8px" }}
             />
+            <select
+                value={searchField}
+                onChange={(e) => setSearchField(e.target.value)}
+                style={{ padding: "8px" }}
+            >
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="customer_id">Customer ID</option>
+            </select>
             <button type="submit" style={{ padding: "8px 12px" }}>
                 Search
             </button>

@@ -121,6 +121,10 @@ nav .bar .links {
   border: 1px solid #bbbbbb;
   overflow: auto;
 }
+.customer-table td{
+  height: 36px;
+  cursor: pointer;
+}
 .outgoing-history {
   border: 1px solid #bbbbbb;
   overflow: auto;

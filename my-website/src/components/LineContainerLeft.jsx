@@ -3,15 +3,22 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import PaginationControls from "./PaginationControls";
 
-function LineContainerLeft({ setCustomers }) {
+function LineContainerLeft({ customerSelected, setCustomers, setCustomerSelected }) {
+    // Pagination states
+    const [totalItems, setTotalItems] = useState(500);
+    const [itemsPerPage, setItemsPerPage] = useState(customerSelected ? 3 : 20);
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
         <div className="line-container">
-            <SearchBar setCustomers={setCustomers}/>
+            <SearchBar
+                setTotalItems={setTotalItems}
+                setCustomers={setCustomers}
+                setCustomerSelected={setCustomerSelected}
+            />
             <PaginationControls
-                totalItems={45}
-                itemsPerPage={10}
+                totalItems={totalItems}
+                itemsPerPage={itemsPerPage}
                 page={currentPage}
                 setCurrentPage={setCurrentPage}
             />

@@ -111,19 +111,21 @@ const records = [
 function CustomerPage() {
     // States for API Queries
     const [customers, setCustomers] = useState([]);
+    const [outgoingRecords, setOutgoingRecords] = useState([]);
+    const [rentalRecords, setRentalRecords] = useState([]);
 
-
-    const [customerSelected, setCustomerSelected] = useState(true);
+    // States for webpage-wide behavior
+    const [customerSelected, setCustomerSelected] = useState(false);
     const [editCustomer, setEditCustomer] = useState(false);
 
     return (
         <>
             <div className="customer-page">
                 <div className="customer-page-left">
-                    <LineContainerLeft setCustomers={setCustomers}/>
-                    <CustomerTable customers={customers} customerSelected={customerSelected}/>
+                    <LineContainerLeft customerSelected={customerSelected} setCustomers={setCustomers} setCustomerSelected={setCustomerSelected}/>
+                    <CustomerTable customers={customers} customerSelected={customerSelected} setCustomerSelected={setCustomerSelected} setOutgoingRecords={setOutgoingRecords} setRentalRecords={setRentalRecords}/>
                     <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected}/>
-                    <RentalHistory records={records} customerSelected={customerSelected}/>
+                    <RentalHistory records={rentalRecords} customerSelected={customerSelected}/>
                 </div>
                 <div className="customer-page-right">
                     <LineContainerRight/>

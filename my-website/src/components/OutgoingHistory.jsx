@@ -1,9 +1,12 @@
 function OutgoingHistory({ records, customerSelected }) {
-    const tableStyle = {
+    const divStyle = {
         height: customerSelected ? "calc(36px * 4 + 1px) " : "100%"
     };
+    const tableStyle = {
+        height: customerSelected ? "auto" : "auto"
+    };
     const rowStyle = {
-        height: customerSelected ? "36px" : "auto"
+        height: customerSelected ? "36px" : "36px"
     };
 
     if (customerSelected == false)
@@ -11,7 +14,7 @@ function OutgoingHistory({ records, customerSelected }) {
         return (<></>)
     }
     return (
-        <div className="outgoing-history" style={tableStyle}>
+        <div className="outgoing-history" style={divStyle}>
             <table style={tableStyle}>
                 <tr style={rowStyle}>
                     <th>rent_id</th>
@@ -25,7 +28,6 @@ function OutgoingHistory({ records, customerSelected }) {
                         inventory_id={r.inventory_id}
                         title={r.title} 
                         rental_date={r.rental_date}
-                        return_date={r.return_date}
                     />
                 ))}
             </table>
