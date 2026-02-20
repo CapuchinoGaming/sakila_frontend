@@ -1,9 +1,9 @@
 function Session() {
     return (
         <div className="session">
-            <text>I am</text>
+            <p>I am</p>
             <li>Mike Hillyer [id: 1]</li>
-            <text>at</text>
+            <p>at</p>
             <li>47 MySakila Drive, Alberta</li>
         </div>
     )

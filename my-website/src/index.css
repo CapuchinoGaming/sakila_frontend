@@ -51,8 +51,9 @@ nav .bar .links {
   color: white;
   background-color:#426B1F;
 }
-.session text {
-  padding: 3px 12px;
+.session p {
+  margin: auto;
+  padding: 0px 12px;
 }
 .session li {
   color: black;
