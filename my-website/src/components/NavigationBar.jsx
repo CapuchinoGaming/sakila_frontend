@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Session from "./Session";
 
 /*  Navigation Bar
@@ -10,9 +11,9 @@ function NavigationBar() {
                 <div className="logo">Sekila</div>
 
                 <ul className="links">
-                    <li>Home</li>
-                    <li>Films</li>
-                    <li>Customers</li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/films">Films</Link></li>
+                    <li><Link to="/customers">Customers</Link></li>
                 </ul>
 
                 <Session/>

@@ -123,8 +123,11 @@ function CustomerPage() {
             <div className="customer-page">
                 <div className="customer-page-left">
                     <LineContainerLeft customerSelected={customerSelected} setCustomers={setCustomers} setCustomerSelected={setCustomerSelected}/>
+                    <h3>Customers</h3>
                     <CustomerTable customers={customers} customerSelected={customerSelected} setCustomerSelected={setCustomerSelected} setOutgoingRecords={setOutgoingRecords} setRentalRecords={setRentalRecords}/>
+                    <h3>Outgoing Rentals</h3>
                     <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected}/>
+                    <h3>Rental History</h3>
                     <RentalHistory records={rentalRecords} customerSelected={customerSelected}/>
                 </div>
                 <div className="customer-page-right">

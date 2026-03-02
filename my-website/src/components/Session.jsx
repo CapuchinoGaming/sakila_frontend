@@ -1,10 +1,14 @@
+import { useContext } from 'react';
+import { SessionContext } from '../contexts/SessionContext';
+
 function Session() {
+    const {storeID, employeeID, setStoreID, setEmployeeID} = useContext(SessionContext);
     return (
         <div className="session">
             <p>I am</p>
-            <li>Mike Hillyer [id: 1]</li>
+            <li>Employee id={employeeID}</li>
             <p>at</p>
-            <li>47 MySakila Drive, Alberta</li>
+            <li>Store id={storeID}</li>
         </div>
     )
 }
