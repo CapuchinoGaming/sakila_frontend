@@ -7,12 +7,7 @@ function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
     // This event activates when the "search" button is pressed
     const fetchCustomers = async (e) => {
     e.preventDefault();
-
-    // If query is empty, retrieve all customers and expand CustomerTable
-    if (query === "")
-    {
-        setCustomerSelected(false);
-    }
+    setCustomerSelected(false);
 
     try {
         const response = await fetch(
