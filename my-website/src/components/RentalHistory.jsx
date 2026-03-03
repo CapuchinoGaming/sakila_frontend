@@ -6,22 +6,27 @@ function RentalHistory({ records, customerSelected }) {
     return (
         <div className="rental-history">
             <table>
-                <tr>
-                    <th>rent_id</th>
-                    <th>inv_id</th>
-                    <th>title</th>
-                    <th>rental_date</th>
-                    <th>return_date</th>
-                </tr>
-                {records.map(r => (
-                    <RentalRow
-                        rental_id={r.rental_id}
-                        inventory_id={r.inventory_id}
-                        title={r.title} 
-                        rental_date={r.rental_date}
-                        return_date={r.return_date}
-                    />
-                ))}
+                <thead>
+                    <tr>
+                        <th>rent_id</th>
+                        <th>inv_id</th>
+                        <th>title</th>
+                        <th>rental_date</th>
+                        <th>return_date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {records.map(r => (
+                        <RentalRow
+                            key={r.rental.rental_id}
+                            rental_id={r.rental.rental_id}
+                            inventory_id={r.rental.inventory_id}
+                            title={r.film.title}
+                            rental_date={r.rental.rental_date}
+                            return_date={r.rental.return_date}
+                        />
+                    ))}
+                </tbody>
             </table>
         </div>
     )

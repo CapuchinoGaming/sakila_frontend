@@ -1,39 +1,25 @@
 import { useState } from "react";
+import { sendRequest } from "../api/handler";
 
 function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
     const [query, setQuery] = useState("");
     const [searchField, setSearchField] = useState("first_name");
 
-    // This event activates when the "search" button is pressed
     const fetchCustomers = async (e) => {
     e.preventDefault();
 
-    // If query is empty, retrieve all customers and expand CustomerTable
     if (query === "")
     {
         setCustomerSelected(false);
     }
 
     try {
-        const response = await fetch(
-            "http://localhost:8000/api/query/customer",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    filter_var: searchField,
-                    filter_value: query,
-                    offset: 0,
-                    top_n: 15,
-                }),
-            }
-        );
-
-        // Query and store the response
-        const data = await response.json();
-        console.log("Full response:", data);
+        const data = await sendRequest("/query/customer", {
+            filter_var: searchField,
+            filter_value: query,
+            offset: 0,
+            top_n: 15,
+        });
 
         if (data && data.customers) {
             setCustomers(data.customers);
@@ -42,7 +28,6 @@ function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
             setCustomers([]);
             setTotalItems(0);
         }
-
     } catch (error) {
         console.error("Error:", error);
     }
