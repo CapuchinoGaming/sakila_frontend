@@ -1,11 +1,6 @@
 // Allow the use of states (React variables)
 import { useState } from "react";
 
-// LineContainer components
-import Session from "../components/Session";
-import SearchBar from "../components/SearchBar";
-import PaginationControls from "../components/PaginationControls";
-
 import LineContainerLeft from "../components/LineContainerLeft";
 import LineContainerRight from "../components/LineContainerRight";
 

@@ -1,4 +1,5 @@
 import Session from "./Session";
+import { NavLink } from "react-router-dom";
 
 /*  Navigation Bar
     Positioned on top of all pages.
@@ -10,9 +11,15 @@ function NavigationBar() {
                 <div className="logo">Sekila</div>
 
                 <ul className="links">
-                    <li>Home</li>
-                    <li>Films</li>
-                    <li>Customers</li>
+                    <NavLink to="/" end>
+                        Home
+                    </NavLink>
+                    <NavLink to="/films">
+                        Films
+                    </NavLink>
+                    <NavLink to="/customers">
+                        Customers
+                    </NavLink>
                 </ul>
 
                 <Session/>
