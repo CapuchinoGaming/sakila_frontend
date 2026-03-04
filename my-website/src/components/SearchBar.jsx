@@ -55,12 +55,7 @@ function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
 
     const fetchCustomers = async (e) => {
     e.preventDefault();
-
-    if (query === "")
-    {
-        // clear selection when search is empty
-        setCustomerSelected(null);
-    }
+    setCustomerSelected(0);
 
     try {
         const data = await sendRequest("/query/customer", {
