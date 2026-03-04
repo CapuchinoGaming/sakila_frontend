@@ -49,7 +49,11 @@ function FilmsPage() {
                     />
                 </div>
                 <div className="customer-page-right">
-                    <div className="line-container"/>
+                    <div className="line-container">
+                        <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
+                            <div>Film Details:</div>
+                        </div>
+                    </div>
                     <FilmInfo filmSelected={filmSelected} customerSelected={customerSelected}/>
                 </div>
             </div>

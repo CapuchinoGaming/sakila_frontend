@@ -23,6 +23,9 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
                     setCustomers={setCustomers}
                     setCustomerSelected={setCustomerSelected}
                 />
+                <div className="line-label" style={{backgroundColor: "#D3A53A"}}>
+                  <div>Select a customer to rent this film to</div>
+                </div>
             </div>
             <div className="customer-table" style={divStyle}>
                 <table style={tableStyle}>

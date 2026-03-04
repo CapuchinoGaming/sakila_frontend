@@ -141,6 +141,9 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomer
                     setFilmSelected={setFilmSelected}
                     setCustomerSelected={setCustomerSelected}
                 />
+                <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
+                  <div>Select a Film</div>
+                </div>
             </div>
 
             <div className="customer-table" style={divStyle}>

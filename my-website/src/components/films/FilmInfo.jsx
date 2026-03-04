@@ -5,12 +5,14 @@ function FilmInfo({ filmSelected, customerSelected }) {
   }
   return (
     <div className="customer-info">
-      <Field label='First Name' value='thing'/>
-      <Field label='Last Name' value='thing'/>
-      <Field label='Email' value='thing'/>
-      <Field label='Address' value='thing'/>
-      <Field label='Phone No.' value='thing'/>
-      <Field label='store_id' value='thing'/>
+      <Field label='film_id' value='19'/>
+      <Field label='title' value='AMADEUS HOLY'/>
+      <Field label='description' value='A Emotional Display of a Pioneer And a Technical Writer who must Battle a Man in A Baloon'/>
+      <Field label='category' value='Action'/>
+      <Field label='actors' value='JOHNNY LOLLOBRIGIDA, JULIA MCQUEEN, VAL BOLGER, KIRK JOVOVICH, JAMES PITT, PENELOPE CRONYN'/>
+      <Field label='rental_duration' value='6 days'/>
+      <Field label='rental_rate' value='$0.99'/>
+      <Field label='replacement_cost' value='$20.99'/>
     </div>
   )
 }
@@ -19,9 +21,9 @@ function Field({ label, value }) {
   return (
     <div style={styles.fieldContainer}>
       <b>{label}</b>
-      <p style={styles.input}>
+      <div>
         {value}
-      </p>
+      </div>
     </div>
   );
 }
