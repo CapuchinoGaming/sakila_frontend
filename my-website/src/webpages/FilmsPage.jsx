@@ -4,48 +4,53 @@ import { useState } from "react";
 import LineContainerLeft from "../components/LineContainerLeft";
 import LineContainerRight from "../components/LineContainerRight";
 
-import CustomerTable from "../components/CustomerTable";
+import CustomerTable from "../components/films/CustomerTable";
 import OutgoingHistory from "../components/OutgoingHistory";
 import RentalHistory from "../components/RentalHistory";
 import CustomerInfo from "../components/CustomerInfo";
 
-import FilmTable from "../components/FilmTable";
+import SearchBar from "../components/SearchBar";
+import FilmTable from "../components/films/FilmTable";
+import FilmInfo from "../components/films/FilmInfo";
 
-/*  Customer Page
-    The customer page is a flexbox. It contains 3 objects within it:
+
+/*  Films Page
+    The films page is a flexbox.
     |=======================|
     |     NavigationBar     |
     |=======================|
-    |   Customer  |   [edit]|
+    |    Films    |   [edit]|
     |    Table    |    [del]|
     |=============|         |
-    |             |  Cust.  |
-    |   Rental    |  Info   |
-    |   History   |         |
+    |             |  Film   |
+    |   Customer  |  Info   |
+    |    Table    |         |
     |=============|=========|
 */
 function FilmsPage() {
     // States for API Queries
     const [customers, setCustomers] = useState([]);
-    const [outgoingRecords, setOutgoingRecords] = useState([]);
-    const [rentalRecords, setRentalRecords] = useState([]);
+    const [films, setFilms] = useState([]);
 
     // States for webpage-wide behavior
+    const [filmSelected, setFilmSelected] = useState(0);
     const [customerSelected, setCustomerSelected] = useState(0);
-    const [editCustomer, setEditCustomer] = useState(false);
-
     return (
         <>
             <div className="customer-page">
                 <div className="customer-page-left">
-                    <FilmTable customerSelected={customerSelected} setCustomers={setCustomers} setCustomerSelected={setCustomerSelected}/>
-                    <CustomerTable customers={customers} customerSelected={customerSelected} setCustomerSelected={setCustomerSelected} setOutgoingRecords={setOutgoingRecords} setRentalRecords={setRentalRecords}/>
-                    <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected}/>
-                    <RentalHistory records={rentalRecords} customerSelected={customerSelected}/>
+                    <FilmTable films={films} filmSelected={filmSelected} setFilmSelected={setFilmSelected} customerSelected={customerSelected} setCustomers={setCustomers} setCustomerSelected={setCustomerSelected}/>
+                    <CustomerTable
+                        filmSelected={filmSelected}
+                        customers={customers}
+                        setCustomers={setCustomers}
+                        customerSelected={customerSelected}
+                        setCustomerSelected={setCustomerSelected}
+                    />
                 </div>
                 <div className="customer-page-right">
-                    <LineContainerRight/>
-                    <CustomerInfo customerSelected={customerSelected}/>
+                    <div className="line-container"/>
+                    <FilmInfo filmSelected={filmSelected} customerSelected={customerSelected}/>
                 </div>
             </div>
         </>
