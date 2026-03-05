@@ -9,37 +9,34 @@ function SearchBar({ setCustomers, setCustomerSelected }) {
     const { storeID } = useContext(SessionContext)
 
     const fetchCustomers = async (e) => {
-    e.preventDefault();
-    setCustomerSelected(0);
+        e.preventDefault();
+        setCustomerSelected(0);
 
-    try {
         let data;
+        try {
+            if (query == "") {
+                data = await sendRequest("/query/customer", {
+                    offset: 0,
+                    top_n: 700,
+                });
+            } else {
+                data = await sendRequest("/query/customer", {
+                    filter_var: searchField,
+                    filter_value: query,
+                    offset: 0,
+                    top_n: 100,
+                });
+            }
 
-        if (query !== '') {
-            data = await sendRequest("/query/customer", {
-                store_id: storeID,
-                filter_var: searchField,
-                filter_value: query,
-                offset: 0,
-                top_n: 15,
-            });
-        } else {
-            data = await sendRequest("/query/customer", {
-                store_id: storeID,
-                offset: 0,
-                top_n: 15,
-            });
+            if (data && data.customers) {
+                setCustomers(data.customers);
+            } else {
+                setCustomers([]);
+            }
+        } catch (error) {
+            console.error("Error:", error);
         }
-
-        if (data && data.customers) {
-            setCustomers(data.customers);
-        } else {
-            setCustomers([]);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
-
+        
         console.log("Searching for:", query);
     };
 

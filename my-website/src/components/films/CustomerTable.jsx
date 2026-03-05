@@ -12,13 +12,13 @@ import SearchBar from "./SearchBar";
 
 function CustomerTable({ customers, setCustomers, customerSelected, setCustomerSelected, filmSelected, filmDetails, refreshRentalsForCustomer }) {  
     const divStyle = {
-        height: customerSelected ? "auto" : "auto"
+        height: "auto"
     };
     const tableStyle = {
-        height: customerSelected ? "auto" : "auto"
+        height: "auto"
     };
     const rowStyle = {
-        height: customerSelected ? "36px" : "36px"
+        height: "36px"
     };
     
     let filmTitle;

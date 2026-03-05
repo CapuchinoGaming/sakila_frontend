@@ -5,13 +5,14 @@ import FilmSearchBar from "./FilmSearchBar";
 // function FilmTable({ customers, setCustomers, customerSelected, setCustomerSelected }) {
 function FilmTable({ films, setFilms, filmSelected, setFilmSelected, filmDetails, setFilmDetails, setCustomers, setCustomerSelected }) {
     const divStyle = {
-        height: filmSelected ? "calc(36px * 4 + 1px) " : "100%"
+        height: filmSelected ? "calc(36px * 4 + 1px)" : "auto",
+        flex: "0 0 auto"
     };
     const tableStyle = {
-        height: filmSelected ? "auto" : "auto"
+        height: "auto"
     };
     const rowStyle = {
-        height: filmSelected ? "36px" : "36px"
+        height: "36px"
     };
 
     return (
