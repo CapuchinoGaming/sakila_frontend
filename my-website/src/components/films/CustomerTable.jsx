@@ -10,7 +10,7 @@ import { SessionContext } from '../../contexts/SessionContext';
 
 import SearchBar from "./SearchBar";
 
-function CustomerTable({ customers, setCustomers, customerSelected, setCustomerSelected, filmSelected, filmDetails, refreshRentalsForCustomer }) {  
+function CustomerTable({ customers, setCustomers, customerSelected, setCustomerSelected, filmSelected, filmDetails, refreshFilms }) {  
     const divStyle = {
         height: "auto"
     };
@@ -62,7 +62,7 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
                                     setCustomerSelected={setCustomerSelected}
                                     filmTitle={filmTitle}
                                     filmID={filmDetails.film.film_id}
-                                    refreshRentalsForCustomer={refreshRentalsForCustomer}
+                                    refreshFilms={refreshFilms}
                                 />
                             ))}
                         </tbody>
@@ -73,7 +73,7 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
     }
 }
 
-function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, filmTitle, filmID, refreshRentalsForCustomer }) {
+function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, filmTitle, filmID, refreshFilms }) {
     const rowStyle = {
         height: customerSelected ? "36px" : "auto"
     };
@@ -96,7 +96,7 @@ function CustomerRow( { id, first_name, last_name, customerSelected, setCustomer
         } catch(err) {
             console.error(err);
         } finally {
-            refreshRentalsForCustomer();
+            refreshFilms();
             handleClose();
         }
     };

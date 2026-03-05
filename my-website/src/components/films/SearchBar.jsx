@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { sendRequest } from "../../api/handler";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
@@ -11,44 +11,23 @@ function SearchBar({ setCustomers, setCustomerSelected }) {
     const fetchCustomers = async (e) => {
         e.preventDefault();
         setCustomerSelected(0);
-
-<<<<<<< HEAD
-    try {
-        let data;
-
-        if (query !== '') {
-            data = await sendRequest("/query/customer", {
-                store_id: storeID,
-                filter_var: searchField,
-                filter_value: query,
-                offset: 0,
-                top_n: 15,
-            });
-        } else {
-            data = await sendRequest("/query/customer", {
-                store_id: storeID,
-                offset: 0,
-                top_n: 15,
-            });
-        }
-=======
-        let data;
         try {
-            if (query == "") {
+            let data;
+            if (query !== '') {
                 data = await sendRequest("/query/customer", {
-                    offset: 0,
-                    top_n: 700,
-                });
-            } else {
-                data = await sendRequest("/query/customer", {
+                    store_id: storeID,
                     filter_var: searchField,
                     filter_value: query,
                     offset: 0,
-                    top_n: 100,
+                    top_n: 15,
+                });
+            } else {
+                data = await sendRequest("/query/customer", {
+                    store_id: storeID,
+                    offset: 0,
+                    top_n: 15,
                 });
             }
->>>>>>> a18f4ed7c4d1a322c7e9f410f3fc13ec3d324603
-
             if (data && data.customers) {
                 setCustomers(data.customers);
             } else {
@@ -57,8 +36,6 @@ function SearchBar({ setCustomers, setCustomerSelected }) {
         } catch (error) {
             console.error("Error:", error);
         }
-        
-        console.log("Searching for:", query);
     };
 
     return (

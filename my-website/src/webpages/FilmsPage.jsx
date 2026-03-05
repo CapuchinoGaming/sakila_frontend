@@ -1,5 +1,7 @@
 // Allow the use of states (React variables)
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { sendRequest } from "../api/handler";
+import { SessionContext } from "../contexts/SessionContext";
 
 import LineContainerLeft from "../components/LineContainerLeft";
 import LineContainerRight from "../components/LineContainerRight";
@@ -36,6 +38,36 @@ function FilmsPage() {
     // States for webpage-wide behavior
     const [filmSelected, setFilmSelected] = useState(0);
     const [customerSelected, setCustomerSelected] = useState(0);
+    const { storeID } = useContext(SessionContext);
+
+    const refreshFilmDetails = async (film_id) => {
+        try {
+            const data = await sendRequest("/details/film", {
+                "film_id": film_id
+            });
+            setFilmDetails(data.film);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+    const refreshFilms = async () => {
+        try {
+            const data = await sendRequest("/query/films", {
+                store_id: storeID,
+                offset: 0,
+                top_n: 15,
+            });
+            if (data && data.films) {
+                setFilms(data.films);
+            } else {
+                setFilms([]);
+            }
+            setFilmSelected(0);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
     return (
         <>
             <div className="customer-page">
@@ -55,6 +87,7 @@ function FilmsPage() {
                         filmDetails={filmDetails}
                         customers={customers}
                         setCustomers={setCustomers}
+                        refreshFilms={refreshFilms}
                         customerSelected={customerSelected}
                         setCustomerSelected={setCustomerSelected}
                     />
