@@ -61,6 +61,7 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
                                     customerSelected={customerSelected}
                                     setCustomerSelected={setCustomerSelected}
                                     filmTitle={filmTitle}
+                                    filmID={filmDetails.film.film_id}
                                     refreshRentalsForCustomer={refreshRentalsForCustomer}
                                 />
                             ))}
@@ -72,14 +73,14 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
     }
 }
 
-function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, filmTitle }) {
+function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, filmTitle, filmID }) {
     const rowStyle = {
         height: customerSelected ? "36px" : "auto"
     };
 
     // States for rent film dialogue
     const [open, setOpen] = useState(false);
-    const { employeeID } = useContext(SessionContext);
+    const { storeID, employeeID } = useContext(SessionContext);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -87,9 +88,10 @@ function CustomerRow( { id, first_name, last_name, customerSelected, setCustomer
     const rentFilm = async () => {
         try {
             await sendRequest('/rent', {
-                "inventory_id": 0,
+                "store_id": storeID,
                 "customer_id": customerSelected,
-                "staff_id": employeeID
+                "staff_id": employeeID,
+                "film_id": filmID
             });
         } catch(err) {
             console.error(err);

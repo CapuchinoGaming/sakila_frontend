@@ -1,21 +1,35 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { sendRequest } from "../../api/handler";
+import { SessionContext } from "../../contexts/SessionContext";
+import { useContext } from "react";
 
 function SearchBar({ setCustomers, setCustomerSelected }) {
     const [query, setQuery] = useState("");
     const [searchField, setSearchField] = useState("first_name");
+    const { storeID } = useContext(SessionContext)
 
     const fetchCustomers = async (e) => {
     e.preventDefault();
     setCustomerSelected(0);
 
     try {
-        const data = await sendRequest("/query/customer", {
-            filter_var: searchField,
-            filter_value: query,
-            offset: 0,
-            top_n: 15,
-        });
+        let data;
+
+        if (query !== '') {
+            data = await sendRequest("/query/customer", {
+                store_id: storeID,
+                filter_var: searchField,
+                filter_value: query,
+                offset: 0,
+                top_n: 15,
+            });
+        } else {
+            data = await sendRequest("/query/customer", {
+                store_id: storeID,
+                offset: 0,
+                top_n: 15,
+            });
+        }
 
         if (data && data.customers) {
             setCustomers(data.customers);

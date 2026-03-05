@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { sendRequest } from "../../api/handler";
+import { SessionContext } from "../../contexts/SessionContext";
+import { useContext } from "react";
+
 
 function FilmSearchBar({ setFilms, setFilmSelected, setCustomers, setCustomerSelected }) {
     // States for the film search query
+    const { storeID } = useContext(SessionContext);
     const [query, setQuery] = useState("");
     const [filmFilter, setFilmFilter] = useState("name");
 
@@ -14,14 +18,17 @@ function FilmSearchBar({ setFilms, setFilmSelected, setCustomers, setCustomerSel
         setCustomerSelected(0);
 
         let data;
+
         try {
             if (query == "") {
                 data = await sendRequest("/query/films", {
+                    store_id: storeID,
                     offset: 0,
                     top_n: 100,
                 });
             } else {
                 data = await sendRequest("/query/films", {
+                    store_id: storeID,
                     filter_var: filmFilter,
                     filter_value: query,
                     offset: 0,

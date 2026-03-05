@@ -58,12 +58,23 @@ function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
     setCustomerSelected(0);
 
     try {
-        const data = await sendRequest("/query/customer", {
-            filter_var: searchField,
-            filter_value: query,
-            offset: 0,
-            top_n: 15,
-        });
+        
+        let data;
+        if (query !== '') {
+            data = await sendRequest("/query/customer", {
+                store_id: storeID,
+                filter_var: searchField,
+                filter_value: query,
+                offset: 0,
+                top_n: 15,
+            });
+        } else {
+            data = await sendRequest("/query/customer", {
+                store_id: storeID,
+                offset: 0,
+                top_n: 15,
+            });
+        }
 
         if (data && data.customers) {
             setCustomers(data.customers);
