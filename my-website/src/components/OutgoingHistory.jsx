@@ -23,35 +23,40 @@ function OutgoingHistory({ records, customerSelected, refreshRentalsForCustomer 
         height: customerSelected ? "36px" : "36px"
     };
 
-    if (customerSelected == null)
+    if (customerSelected == 0)
     {
         return null; // no need to return anything
     }
     return (
-        <div className="outgoing-history" style={divStyle}>
-            <table style={tableStyle}>
-                <thead>
-                    <tr style={rowStyle}>
-                        <th>rent_id</th>
-                        <th>inv_id</th>
-                        <th>title</th>
-                        <th>rental_date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {records.map(r => (
-                        <RentalRow
-                            key={r.rental.rental_id}
-                            rental_id={r.rental.rental_id}
-                            inventory_id={r.rental.inventory_id}
-                            title={r.film.title}
-                            rental_date={r.rental.rental_date}
-                            refreshRentalsForCustomer={() => refreshRentalsForCustomer(customerSelected)}
-                        />
-                    ))}
-                </tbody>
-            </table>
-        </div>
+        <>
+            <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
+                            <div>Outgoing Rentals</div>
+            </div>
+            <div className="outgoing-history" style={divStyle}>
+                <table style={tableStyle}>
+                    <thead>
+                        <tr style={rowStyle}>
+                            <th>rent_id</th>
+                            <th>inv_id</th>
+                            <th>title</th>
+                            <th>rental_date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {records.map(r => (
+                            <RentalRow
+                                key={r.rental.rental_id}
+                                rental_id={r.rental.rental_id}
+                                inventory_id={r.rental.inventory_id}
+                                title={r.film.title}
+                                rental_date={r.rental.rental_date}
+                                refreshRentalsForCustomer={() => refreshRentalsForCustomer(customerSelected)}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     )
 }
 

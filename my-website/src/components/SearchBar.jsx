@@ -8,9 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { SessionContext } from '../contexts/SessionContext';
 
-function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
-    const [query, setQuery] = useState("");
-    const [searchField, setSearchField] = useState("first_name");
+function SearchBar({ setTotalItems, setCustomers, setCustomerSelected, query, setQuery, searchField, setSearchField }) {
     const [open, setOpen] = useState(false);
     const { storeID } = useContext(SessionContext);
     const [form, setForm] = useState({
@@ -78,7 +76,6 @@ function SearchBar({ setTotalItems, setCustomers, setCustomerSelected }) {
 
         if (data && data.customers) {
             setCustomers(data.customers);
-            setTotalItems(data.customers.length);
         } else {
             setCustomers([]);
             setTotalItems(0);
