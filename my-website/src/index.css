@@ -166,7 +166,7 @@ td, th {
 tr {
   height: 36px;
 }
-table tr:first-child {
+table thead {
   position: sticky;
   top: 0;
 }

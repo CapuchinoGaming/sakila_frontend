@@ -52,6 +52,7 @@ function FilmsPage() {
                     />
                     <CustomerTable
                         filmSelected={filmSelected}
+                        filmDetails={filmDetails}
                         customers={customers}
                         setCustomers={setCustomers}
                         customerSelected={customerSelected}
