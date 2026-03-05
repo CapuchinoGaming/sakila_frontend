@@ -65,7 +65,7 @@ function CustomerPage() {
                     <RentalHistory records={rentalRecords} customerSelected={customerSelected}/>
                 </div>
                 <div className="customer-page-right">
-                    <LineContainerRight/>
+                    <LineContainerRight customerSelected={customerSelected}/>
                     <CustomerInfo customerSelected={customerSelected} customerDetails={customerDetails}/>
                 </div>
             </div>

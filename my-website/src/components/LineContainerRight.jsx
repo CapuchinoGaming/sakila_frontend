@@ -1,12 +1,19 @@
-function LineContainerRight() {
+import { sendRequest } from "../api/handler";
+
+function LineContainerRight( {customerSelected} ) {
     const placeholder1 = () => {
         // TODO: Add edit logic here
         console.log("Edit clicked");
     };
 
-    const placeholder2 = () => {
-        // TODO: Add delete logic here
-        console.log("Delete clicked");
+    const deleteCustomer = async () => {
+        try {
+            await sendRequest('/customer/delete', {
+                "customer_id": customerSelected,
+            });
+        } catch(err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -15,7 +22,7 @@ function LineContainerRight() {
                 Edit
             </button>
 
-            <button onClick={placeholder2}>
+            <button onClick={deleteCustomer}>
                 Delete
             </button>
         </div>
