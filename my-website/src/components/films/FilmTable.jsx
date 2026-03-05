@@ -14,125 +14,6 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomer
         height: filmSelected ? "36px" : "36px"
     };
 
-    const filmArray = [
-    {
-      "film": {
-        "film_id": 19,
-        "title": "AMADEUS HOLY",
-        "description": "A Emotional Display of a Pioneer And a Technical Writer who must Battle a Man in A Baloon",
-        "release_year": 2006,
-        "language_id": 1,
-        "original_language": null,
-        "rental_duration": 6,
-        "rental_rate": 0.99,
-        "length": 113,
-        "replacement_cost": 20.99,
-        "rating": "PG",
-        "special_features": "Behind the Scenes,Commentaries,Deleted Scenes",
-        "last_update": "2006-02-15T05:03:42"
-      },
-      "actors": [
-        {
-          "actor_id": 5,
-          "first_name": "JOHNNY",
-          "last_name": "LOLLOBRIGIDA",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 27,
-          "first_name": "JULIA",
-          "last_name": "MCQUEEN",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 37,
-          "first_name": "VAL",
-          "last_name": "BOLGER",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 43,
-          "first_name": "KIRK",
-          "last_name": "JOVOVICH",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 84,
-          "first_name": "JAMES",
-          "last_name": "PITT",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 104,
-          "first_name": "PENELOPE",
-          "last_name": "CRONYN",
-          "last_update": "2006-02-15T04:34:33"
-        }
-      ],
-      "category": "Action",
-      "language": "English",
-      "rental_count": null
-    },
-    {
-      "film": {
-        "film_id": 19,
-        "title": "AMADEUS HOLY",
-        "description": "A Emotional Display of a Pioneer And a Technical Writer who must Battle a Man in A Baloon",
-        "release_year": 2006,
-        "language_id": 1,
-        "original_language": null,
-        "rental_duration": 6,
-        "rental_rate": 0.99,
-        "length": 113,
-        "replacement_cost": 20.99,
-        "rating": "PG",
-        "special_features": "Behind the Scenes,Commentaries,Deleted Scenes",
-        "last_update": "2006-02-15T05:03:42"
-      },
-      "actors": [
-        {
-          "actor_id": 5,
-          "first_name": "JOHNNY",
-          "last_name": "LOLLOBRIGIDA",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 27,
-          "first_name": "JULIA",
-          "last_name": "MCQUEEN",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 37,
-          "first_name": "VAL",
-          "last_name": "BOLGER",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 43,
-          "first_name": "KIRK",
-          "last_name": "JOVOVICH",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 84,
-          "first_name": "JAMES",
-          "last_name": "PITT",
-          "last_update": "2006-02-15T04:34:33"
-        },
-        {
-          "actor_id": 104,
-          "first_name": "PENELOPE",
-          "last_name": "CRONYN",
-          "last_update": "2006-02-15T04:34:33"
-        }
-      ],
-      "category": "Action",
-      "language": "English",
-      "rental_count": null
-    }
-  ];
-
     return (
         <>
             <div className="line-container">
@@ -148,28 +29,35 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomer
 
             <div className="customer-table" style={divStyle}>
                 <table style={tableStyle}>
+                  <thead>
                     <tr style={rowStyle}>
                         <th>film_id</th>
                         <th>title</th>
                         <th>category</th>
+                        <th>in_stock</th>
                     </tr>
-                    {filmArray.map(f => (
+                  </thead>
+
+                  <tbody>
+                    {films.map(f => (
                         <FilmRow
-                            key={f.film.film_id}
+                            key={`${f.film.film_id}-${f.number_found}`}
                             film_id={f.film.film_id}
                             title={f.film.title}
                             category={f.category}
+                            in_stock={f.in_stock}
                             filmSelected={filmSelected}
                             setFilmSelected={setFilmSelected}
                         />
                     ))}
+                  </tbody>
                 </table>
             </div>
         </>
     )
 }
 
-function FilmRow( { film_id, title, category, filmSelected, setFilmSelected, refreshRentalsForCustomer }) {
+function FilmRow( { film_id, title, category, in_stock, filmSelected, setFilmSelected, refreshRentalsForCustomer }) {
     const rowStyle = {
         height: filmSelected ? "36px" : "auto"
     };
@@ -187,6 +75,7 @@ function FilmRow( { film_id, title, category, filmSelected, setFilmSelected, ref
             <td>{film_id}</td>
             <td>{title}</td>
             <td>{category}</td>
+            <td>{in_stock}</td>
         </tr>
     )
 }

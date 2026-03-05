@@ -39,7 +39,13 @@ function FilmsPage() {
         <>
             <div className="customer-page">
                 <div className="customer-page-left">
-                    <FilmTable films={films} filmSelected={filmSelected} setFilmSelected={setFilmSelected} customerSelected={customerSelected} setCustomers={setCustomers} setCustomerSelected={setCustomerSelected}/>
+                    <FilmTable
+                        films={films}
+                        setFilms={setFilms}
+                        filmSelected={filmSelected}
+                        setFilmSelected={setFilmSelected}
+                        customerSelected={customerSelected}
+                    />
                     <CustomerTable
                         filmSelected={filmSelected}
                         customers={customers}
@@ -49,11 +55,6 @@ function FilmsPage() {
                     />
                 </div>
                 <div className="customer-page-right">
-                    <div className="line-container">
-                        <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
-                            <div>Film Details:</div>
-                        </div>
-                    </div>
                     <FilmInfo filmSelected={filmSelected} customerSelected={customerSelected}/>
                 </div>
             </div>

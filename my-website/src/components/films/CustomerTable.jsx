@@ -1,4 +1,4 @@
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../SearchBar";
 
 function CustomerTable({ customers, setCustomers, customerSelected, setCustomerSelected, filmSelected, refreshRentalsForCustomer }) {
     const divStyle = {

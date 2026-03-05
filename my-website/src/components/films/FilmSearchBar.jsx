@@ -12,26 +12,65 @@ function FilmSearchBar({ setFilms, setFilmSelected, setCustomerSelected }) {
         setFilmSelected(0);
         setCustomerSelected(0);
 
+        let data;
         try {
-            const data = await sendRequest("/query/films", {
-                filter_var: filmFilter,
-                filter_value: query,
-                offset: 0,
-                top_n: 15,
-            });
-
-            if (data && data.films) {
-                setFilms(data.films);
+            if (query == "") {
+                data = await sendRequest("/query/films", {
+                    offset: 0,
+                    top_n: 100,
+                });
             } else {
-                setFilms([]);
+                data = await sendRequest("/query/films", {
+                    filter_var: filmFilter,
+                    filter_value: query,
+                    offset: 0,
+                    top_n: 100,
+                });
             }
+
             console.log("Searching for:", query);
             console.log("Full response:", data);
         } catch (error) {
             console.error("Error:", error);
         }
 
+        // Count frequency per film_id
+        const freq = {};
+        for (const obj of data.films) {
+            const id = obj.film.film_id;
+            freq[id] = (freq[id] || 0) + 1;
+        }
 
+        // 2) Enumerate duplicates per film_id
+        const seen = {}; // tracks how many of each id we've already labeled
+
+        // 3) Append new attributes onto each object (mutates objects)
+        for (const obj of data.films) {
+            const id = obj.film.film_id;
+
+            seen[id] = (seen[id] || 0) + 1;
+
+            obj.in_stock = freq[id];          // total copies of this film in the list
+            obj.number_found = seen[id];      // 1..N for duplicates of same film_id
+        }
+
+        // 4) Remove duplicates
+        if (data?.films) {
+            const uniqueFilms = [];
+            const kept = new Set();
+
+            for (const obj of data.films) {
+                const id = obj.film.film_id;
+                if (!kept.has(id)) {
+                kept.add(id);
+                uniqueFilms.push(obj);
+                }
+            }
+
+            setFilms(uniqueFilms);
+        } else {
+            setFilms([]);
+        }
     };
 
     // FilmSearchBar component
