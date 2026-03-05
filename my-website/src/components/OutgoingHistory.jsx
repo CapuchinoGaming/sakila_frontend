@@ -9,6 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { sendRequest } from '../api/handler';
 import { SessionContext } from '../contexts/SessionContext';
+import { SuccessDialog, FailureDialog } from './Dialogs';
 
 
 function OutgoingHistory({ records, customerSelected, refreshRentalsForCustomer }) { 
@@ -60,6 +61,8 @@ function RentalRow({ rental_id, inventory_id, title, rental_date, refreshRentals
         cursor: 'pointer'
     };
     const [open, setOpen] = useState(false);
+    const [successOpen, setSuccessOpen] = useState(false);
+    const [failureOpen, setFailureOpen] = useState(false);
     const handleClickOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
@@ -70,11 +73,12 @@ function RentalRow({ rental_id, inventory_id, title, rental_date, refreshRentals
                 rental_id: rental_id,
                 staff_id: employeeID
             });
+            setSuccessOpen(true);
         } catch (err) {
             console.error("Return failed", err);
+            setFailureOpen(true);
         } finally {
-            refreshRentalsForCustomer();
-            setOpen(false);
+            handleClose();
         }
     };
 
@@ -108,6 +112,8 @@ function RentalRow({ rental_id, inventory_id, title, rental_date, refreshRentals
                     </Button>
                 </DialogActions>
             </Dialog>
+            <SuccessDialog open={successOpen} onClose={() => { setSuccessOpen(false); refreshRentalsForCustomer(); }} message={`Successfully returned ${title}`} />
+            <FailureDialog open={failureOpen} onClose={() => setFailureOpen(false)} message="Failed to return film" />
         </>
     )
 }

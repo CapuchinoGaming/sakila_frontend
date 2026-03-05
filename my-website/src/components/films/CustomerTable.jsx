@@ -7,6 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useContext } from "react";
 import { sendRequest } from "../../api/handler";
 import { SessionContext } from '../../contexts/SessionContext';
+import { SuccessDialog, FailureDialog } from "../Dialogs";
 
 import SearchBar from "./SearchBar";
 
@@ -78,8 +79,9 @@ function CustomerRow( { id, first_name, last_name, customerSelected, setCustomer
         height: customerSelected ? "36px" : "auto"
     };
 
-    // States for rent film dialogue
     const [open, setOpen] = useState(false);
+    const [successOpen, setSuccessOpen] = useState(false);
+    const [failureOpen, setFailureOpen] = useState(false);
     const { storeID, employeeID } = useContext(SessionContext);
 
     const handleOpen = () => setOpen(true);
@@ -93,10 +95,11 @@ function CustomerRow( { id, first_name, last_name, customerSelected, setCustomer
                 "staff_id": employeeID,
                 "film_id": filmID
             });
+            setSuccessOpen(true);
         } catch(err) {
             console.error(err);
+            setFailureOpen(true);
         } finally {
-            refreshFilms();
             handleClose();
         }
     };
@@ -112,6 +115,8 @@ function CustomerRow( { id, first_name, last_name, customerSelected, setCustomer
                 <td>{last_name}</td>
             </tr>
             <CreateDialog open={open} onClose={handleClose} onSubmit={rentFilm} filmTitle={filmTitle} first_name={first_name} customerSelected={customerSelected}/>
+            <SuccessDialog open={successOpen} onClose={() => { setSuccessOpen(false); refreshFilms(); }} message={`Successfully rented ${filmTitle}`} />
+            <FailureDialog open={failureOpen} onClose={() => setFailureOpen(false)} message="Failed to rent film" />
         </>
     )
 }
