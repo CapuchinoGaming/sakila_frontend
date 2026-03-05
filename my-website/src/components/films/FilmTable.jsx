@@ -35,7 +35,6 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, filmDetails
                         <th>film_id</th>
                         <th>title</th>
                         <th>category</th>
-                        <th>in_stock</th>
                     </tr>
                   </thead>
 
@@ -46,7 +45,6 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, filmDetails
                             film_id={f.film.film_id}
                             title={f.film.title}
                             category={f.category}
-                            in_stock={f.in_stock}
                             filmSelected={filmSelected}
                             setFilmSelected={setFilmSelected}
                             filmDetails={filmDetails}
@@ -60,7 +58,7 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, filmDetails
     )
 }
 
-function FilmRow( { film_id, title, category, in_stock, filmSelected, setFilmSelected, filmDetails, setFilmDetails }) {
+function FilmRow( { film_id, title, category, filmSelected, setFilmSelected, filmDetails, setFilmDetails }) {
     const rowStyle = {
         height: filmSelected ? "36px" : "auto"
     };
@@ -90,7 +88,6 @@ function FilmRow( { film_id, title, category, in_stock, filmSelected, setFilmSel
             <td>{film_id}</td>
             <td>{title}</td>
             <td>{category}</td>
-            <td>{in_stock}</td>
         </tr>
     )
 }
