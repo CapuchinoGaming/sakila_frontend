@@ -15,8 +15,9 @@ html, body, #root {
 nav .bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 24px 48px;
+  gap: 48px;
   background-color:#426B1F
 }
 nav .bar .logo {
@@ -27,12 +28,19 @@ nav .bar .logo {
 nav .bar .links {
   display: flex;
   list-style: none;
+
   gap: 48px;
   margin: 0px;
   padding: 0px;
-  color: white;
+}
+nav .bar .links a {
+  margin: 0px;
+  padding: 0px;
 
+  color: white;
+  text-decoration: none;
   font-size: 20px;
+
   cursor: pointer;
 }
 .line-container {
@@ -58,8 +66,9 @@ nav .bar .links {
 .session {
   display: flex;
 
-  padding: 6px 6px;
   width:fit-content;
+  padding: 6px 6px;
+  margin-left: auto;
 
   color: white;
   background-color:#426B1F;
