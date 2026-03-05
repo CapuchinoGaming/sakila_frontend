@@ -1,4 +1,15 @@
-import SearchBar from "../SearchBar";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+import { useState, useContext } from "react";
+import { sendRequest } from "../../api/handler";
+import { SessionContext } from '../../contexts/SessionContext';
+
+import SearchBar from "./SearchBar";
 
 function CustomerTable({ customers, setCustomers, customerSelected, setCustomerSelected, filmSelected, refreshRentalsForCustomer }) {
     const divStyle = {
@@ -55,20 +66,14 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
     )
 }
 
-function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, refreshRentalsForCustomer }) {
+function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected }) {
     const rowStyle = {
         height: customerSelected ? "36px" : "auto"
-    };
-
-    const fetchDetails = (id) => {
-        // delegate to parent
-        refreshRentalsForCustomer(id);
     };
 
     return (
         <tr style={rowStyle} onClick={() => {
             setCustomerSelected(id);
-            fetchDetails(id);
         }}>
             <td>{id}</td>
             <td>{first_name}</td>

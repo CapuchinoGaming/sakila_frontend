@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { sendRequest } from "../../api/handler";
 
-function FilmSearchBar({ setFilms, setFilmSelected, setCustomerSelected }) {
+function FilmSearchBar({ setFilms, setFilmSelected, setCustomers, setCustomerSelected }) {
     // States for the film search query
     const [query, setQuery] = useState("");
     const [filmFilter, setFilmFilter] = useState("name");
@@ -10,6 +10,7 @@ function FilmSearchBar({ setFilms, setFilmSelected, setCustomerSelected }) {
     const fetchFilms = async (e) => {
         e.preventDefault();
         setFilmSelected(0);
+        setCustomers([]);
         setCustomerSelected(0);
 
         let data;

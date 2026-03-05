@@ -31,6 +31,7 @@ function FilmsPage() {
     // States for API Queries
     const [customers, setCustomers] = useState([]);
     const [films, setFilms] = useState([]);
+    const [filmDetails, setFilmDetails] = useState({});
 
     // States for webpage-wide behavior
     const [filmSelected, setFilmSelected] = useState(0);
@@ -44,7 +45,10 @@ function FilmsPage() {
                         setFilms={setFilms}
                         filmSelected={filmSelected}
                         setFilmSelected={setFilmSelected}
-                        customerSelected={customerSelected}
+                        filmDetails={filmDetails}
+                        setFilmDetails={setFilmDetails}
+                        setCustomers={setCustomers}
+                        setCustomerSelected={setCustomerSelected}
                     />
                     <CustomerTable
                         filmSelected={filmSelected}
@@ -54,8 +58,12 @@ function FilmsPage() {
                         setCustomerSelected={setCustomerSelected}
                     />
                 </div>
+
                 <div className="customer-page-right">
-                    <FilmInfo filmSelected={filmSelected} customerSelected={customerSelected}/>
+                    <FilmInfo
+                        filmSelected={filmSelected}
+                        filmDetails={filmDetails}
+                    />
                 </div>
             </div>
         </>

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { sendRequest } from "../../api/handler";
 
 import FilmSearchBar from "./FilmSearchBar";
 
 // function FilmTable({ customers, setCustomers, customerSelected, setCustomerSelected }) {
-function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomerSelected }) {
+function FilmTable({ films, setFilms, filmSelected, setFilmSelected, filmDetails, setFilmDetails, setCustomers, setCustomerSelected }) {
     const divStyle = {
         height: filmSelected ? "calc(36px * 4 + 1px) " : "100%"
     };
@@ -20,6 +20,7 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomer
                 <FilmSearchBar
                     setFilms={setFilms}
                     setFilmSelected={setFilmSelected}
+                    setCustomers={setCustomers}
                     setCustomerSelected={setCustomerSelected}
                 />
                 <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
@@ -48,6 +49,8 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomer
                             in_stock={f.in_stock}
                             filmSelected={filmSelected}
                             setFilmSelected={setFilmSelected}
+                            filmDetails={filmDetails}
+                            setFilmDetails={setFilmDetails}
                         />
                     ))}
                   </tbody>
@@ -57,18 +60,30 @@ function FilmTable({ films, setFilms, filmSelected, setFilmSelected, setCustomer
     )
 }
 
-function FilmRow( { film_id, title, category, in_stock, filmSelected, setFilmSelected, refreshRentalsForCustomer }) {
+function FilmRow( { film_id, title, category, in_stock, filmSelected, setFilmSelected, filmDetails, setFilmDetails }) {
     const rowStyle = {
         height: filmSelected ? "36px" : "auto"
     };
 
-    const fetchDetails = (film_id) => {
-        // delegate to parent
+    const fetchDetails = async (film_id) => {
+        console.log("fetchDetails called:", film_id);
+        let data;
+        try {
+            data = await sendRequest("/details/film", {
+                "film_id": film_id
+            });
+        } catch (error) {
+            console.error("Error:", error);
+        }
+        console.log("data from API:", data);
+        setFilmDetails(data.film);
+
         console.log("Fetching details for film_id:", film_id);
     };
 
     return (
         <tr style={rowStyle} onClick={() => {
+            console.log("row clicked film_id:", film_id);
             setFilmSelected(film_id);
             fetchDetails(film_id);
         }}>
