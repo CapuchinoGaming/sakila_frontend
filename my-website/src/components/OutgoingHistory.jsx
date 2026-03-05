@@ -29,7 +29,7 @@ function OutgoingHistory({ records, customerSelected, refreshRentalsForCustomer 
     }
     return (
         <>
-            <div className="line-label" style={{backgroundColor: "#D3A53A"}}>
+            <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
                             <div>Outgoing Rentals</div>
             </div>
             <div className="outgoing-history" style={divStyle}>

@@ -6,7 +6,7 @@ function RentalHistory({ records, customerSelected }) {
     else {
         return (
             <>
-                <div className="line-label" style={{backgroundColor: "#D3A53A"}}>
+                <div className="line-label" style={{backgroundColor: "#2F6FA8"}}>
                     <div>Rental History</div>
                 </div>
                 <div className="rental-history">

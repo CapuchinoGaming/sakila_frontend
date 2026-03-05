@@ -26,11 +26,11 @@ import CustomerInfo from "../components/CustomerInfo";
 */
 function CustomerPage() {
     const [customers, setCustomers] = useState([]);
+    const [customerDetails, setCustomerDetails] = useState({});
     const [outgoingRecords, setOutgoingRecords] = useState([]);
     const [rentalRecords, setRentalRecords] = useState([]);
 
     const [customerSelected, setCustomerSelected] = useState(0);
-    const [editCustomer, setEditCustomer] = useState(false);
 
     const refreshRentalsForCustomer = async (id) => {
         try {
@@ -39,6 +39,7 @@ function CustomerPage() {
             if (data && (data.customer.rental_history || data.customer.outgoing_rentals)) {
                 setRentalRecords(data.customer.rental_history || []);
                 setOutgoingRecords(data.customer.outgoing_rentals || []);
+                setCustomerDetails(data.customer)
             } else {
                 setRentalRecords([]);
                 setOutgoingRecords([]);
@@ -57,8 +58,7 @@ function CustomerPage() {
                         customers={customers}
                         customerSelected={customerSelected}
                         setCustomerSelected={setCustomerSelected}
-                        setOutgoingRecords={setOutgoingRecords}
-                        setRentalRecords={setRentalRecords}
+                        setCustomerDetails={setCustomerDetails}
                         refreshRentalsForCustomer={refreshRentalsForCustomer}
                     />
                     <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected} refreshRentalsForCustomer={refreshRentalsForCustomer} />
@@ -66,7 +66,7 @@ function CustomerPage() {
                 </div>
                 <div className="customer-page-right">
                     <LineContainerRight/>
-                    <CustomerInfo customerSelected={customerSelected}/>
+                    <CustomerInfo customerSelected={customerSelected} customerDetails={customerDetails}/>
                 </div>
             </div>
         </>

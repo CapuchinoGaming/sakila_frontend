@@ -1,5 +1,5 @@
 
-function CustomerTable({ customers, customerSelected, setCustomerSelected, refreshRentalsForCustomer }) {
+function CustomerTable({ customers, customerSelected, setCustomerSelected, setCustomerDetails, refreshRentalsForCustomer }) {
     const divStyle = {
         height: customerSelected ? "calc(36px * 4 + 1px) " : "100%"
     };
