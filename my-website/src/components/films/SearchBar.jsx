@@ -12,6 +12,26 @@ function SearchBar({ setCustomers, setCustomerSelected }) {
         e.preventDefault();
         setCustomerSelected(0);
 
+<<<<<<< HEAD
+    try {
+        let data;
+
+        if (query !== '') {
+            data = await sendRequest("/query/customer", {
+                store_id: storeID,
+                filter_var: searchField,
+                filter_value: query,
+                offset: 0,
+                top_n: 15,
+            });
+        } else {
+            data = await sendRequest("/query/customer", {
+                store_id: storeID,
+                offset: 0,
+                top_n: 15,
+            });
+        }
+=======
         let data;
         try {
             if (query == "") {
@@ -27,6 +47,7 @@ function SearchBar({ setCustomers, setCustomerSelected }) {
                     top_n: 100,
                 });
             }
+>>>>>>> a18f4ed7c4d1a322c7e9f410f3fc13ec3d324603
 
             if (data && data.customers) {
                 setCustomers(data.customers);
