@@ -6,26 +6,34 @@ function SearchBar({ setCustomers, setCustomerSelected }) {
     const [searchField, setSearchField] = useState("first_name");
 
     const fetchCustomers = async (e) => {
-    e.preventDefault();
-    setCustomerSelected(0);
+        e.preventDefault();
+        setCustomerSelected(0);
 
-    try {
-        const data = await sendRequest("/query/customer", {
-            filter_var: searchField,
-            filter_value: query,
-            offset: 0,
-            top_n: 15,
-        });
+        let data;
+        try {
+            if (query == "") {
+                data = await sendRequest("/query/customer", {
+                    offset: 0,
+                    top_n: 700,
+                });
+            } else {
+                data = await sendRequest("/query/customer", {
+                    filter_var: searchField,
+                    filter_value: query,
+                    offset: 0,
+                    top_n: 100,
+                });
+            }
 
-        if (data && data.customers) {
-            setCustomers(data.customers);
-        } else {
-            setCustomers([]);
+            if (data && data.customers) {
+                setCustomers(data.customers);
+            } else {
+                setCustomers([]);
+            }
+        } catch (error) {
+            console.error("Error:", error);
         }
-    } catch (error) {
-        console.error("Error:", error);
-    }
-
+        
         console.log("Searching for:", query);
     };
 
