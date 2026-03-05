@@ -2,11 +2,6 @@
 import { useState } from "react";
 import { sendRequest } from "../api/handler";
 
-// LineContainer components
-import Session from "../components/Session";
-import SearchBar from "../components/SearchBar";
-import PaginationControls from "../components/PaginationControls";
-
 import LineContainerLeft from "../components/LineContainerLeft";
 import LineContainerRight from "../components/LineContainerRight";
 
@@ -34,7 +29,7 @@ function CustomerPage() {
     const [outgoingRecords, setOutgoingRecords] = useState([]);
     const [rentalRecords, setRentalRecords] = useState([]);
 
-    const [customerSelected, setCustomerSelected] = useState(null);
+    const [customerSelected, setCustomerSelected] = useState(0);
     const [editCustomer, setEditCustomer] = useState(false);
 
     const refreshRentalsForCustomer = async (id) => {
@@ -58,7 +53,6 @@ function CustomerPage() {
             <div className="customer-page">
                 <div className="customer-page-left">
                     <LineContainerLeft customerSelected={customerSelected} setCustomers={setCustomers} setCustomerSelected={setCustomerSelected}/>
-                    <h3>Customers</h3>
                     <CustomerTable
                         customers={customers}
                         customerSelected={customerSelected}
@@ -67,9 +61,7 @@ function CustomerPage() {
                         setRentalRecords={setRentalRecords}
                         refreshRentalsForCustomer={refreshRentalsForCustomer}
                     />
-                    <h3>Outgoing Rentals</h3>
                     <OutgoingHistory records={outgoingRecords} customerSelected={customerSelected} refreshRentalsForCustomer={refreshRentalsForCustomer} />
-                    <h3>Rental History</h3>
                     <RentalHistory records={rentalRecords} customerSelected={customerSelected}/>
                 </div>
                 <div className="customer-page-right">
