@@ -73,7 +73,7 @@ function CustomerTable({ customers, setCustomers, customerSelected, setCustomerS
     }
 }
 
-function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, filmTitle, filmID }) {
+function CustomerRow( { id, first_name, last_name, customerSelected, setCustomerSelected, filmTitle, filmID, refreshRentalsForCustomer }) {
     const rowStyle = {
         height: customerSelected ? "36px" : "auto"
     };
@@ -95,8 +95,10 @@ function CustomerRow( { id, first_name, last_name, customerSelected, setCustomer
             });
         } catch(err) {
             console.error(err);
+        } finally {
+            refreshRentalsForCustomer();
+            handleClose();
         }
-        handleClose();
     };
 
     return (
